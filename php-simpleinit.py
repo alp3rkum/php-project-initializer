@@ -21,6 +21,7 @@ def main():
         #example arguments
         # parser.add_argument("--admin", action="store_true", help="Create the default project with admin panel")
         # parser.add_argument("--production", action="store_true", help="Create a production-grade template for fast development")
+        parser.add_argument("--nocreate", action="store_true", help="Do not create a new project")
         #can take subarguments (eg --addon login about contact)
         parser.add_argument("--addon", nargs='+', type=str, help="Specify an addon to include in the project")
         args = parser.parse_args()
@@ -32,13 +33,16 @@ def main():
             executable_dir = os.path.dirname(os.path.abspath(__file__))
         
         #if-elif-else structure for each argument like --admin and --production, depending on the argument and your template layout
-        if args.admin:
-            template_dir = os.path.join(executable_dir, 'project-skeletons/default-with-admin')
-            print("Creating a default project with admin panel...")
-        elif args.production:
-            template_dir = os.path.join(executable_dir, 'project-skeletons/production')
-            print("Creating a production template project...")
+        if args.nocreate:
+            pass
         else:
+            # if args.admin:
+            #     template_dir = os.path.join(executable_dir, 'project-skeletons/default-with-admin')
+            #     print("Creating a default project with admin panel...")
+            # elif args.production:
+            #     template_dir = os.path.join(executable_dir, 'project-skeletons/production')
+            #     print("Creating a production template project...")
+            # else:
             template_dir = os.path.join(executable_dir, 'project-skeletons/default')
             print("Creating a default project...")
         
